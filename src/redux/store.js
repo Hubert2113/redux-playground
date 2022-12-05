@@ -1,15 +1,6 @@
-import { createStore } from 'redux';
-import { devToolsEnhancer } from '@redux-devtools/extension';
+import { configureStore } from '@reduxjs/toolkit';
+import { stateReducer } from './reducers';
 
-const initialState = {
-    currentNumber: 0,
-    step: 1,
-}
-
-const rootReducer = (state = initialState, action) => {
-    return state;
-}
-
-const enhancer = devToolsEnhancer();
-
-export const store = createStore(rootReducer, enhancer);
+export const store = configureStore({
+    reducer: stateReducer,
+})

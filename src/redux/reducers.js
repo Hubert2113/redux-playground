@@ -1,24 +1,32 @@
-import { combineReducers } from "redux";
-import { INCREMENT } from "./actions";
+import { createReducer } from "@reduxjs/toolkit";
+import {
+    INCREMENT,
+    DECREMENT,
+    CHANGE_VALUE,
+} from './actions';
 
 const initialState = {
     currentNumber: 0,
     step: 1,
 }
 
-const incrementValue = (state = initialState, action) => {
-    switch(action.type){
-        case INCREMENT: {
-            return {
-                ...state,
-                currentNumber: state.currentNumber + 1,
-            }
+export const stateReducer = createReducer(initialState, {
+    [INCREMENT]: (state, action) => {
+        return {
+            ...state,
+            currentNumber: parseInt(state.currentNumber) + parseInt(state.step),
         }
-        default:
-            return state;
-    }
-}
-
-export const rootReducer = combineReducers({
-    increment: incrementValue,
+    },
+    [DECREMENT]: (state, action) => {
+        return {
+            ...state,
+            currentNumber: parseInt(state.currentNumber) - parseInt(state.step),
+        }
+    },
+    [CHANGE_VALUE]: (state, action) => {
+        return {
+            ...state,
+            step: action.payload,
+        }
+    },
 });

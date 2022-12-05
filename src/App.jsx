@@ -10,25 +10,26 @@ function App() {
   const dispatch = useDispatch();
 
   const currentNumber = useSelector(state => state.currentNumber);
+  const step = useSelector(state => state.step);
 
   const incrementValue = () => {
-    dispatch(INCREMENT);
+    dispatch(INCREMENT());
   }
 
   const decrementValue = () => {
-    dispatch(DECREMENT);
+    dispatch(DECREMENT());
   }
 
-  const changeStep = () => {
-    dispatch(CHANGE_VALUE);
+  const changeStep = (ev) => {
+    dispatch(CHANGE_VALUE(ev.target.value));
   }
 
   return (
     <>
       <p>{currentNumber}</p>
-      <input type="number"/>
+      <input value={step} type="number" onInput={changeStep}/>
       <button onClick={incrementValue}>+</button>
-      <button>-</button>
+      <button onClick={decrementValue}>-</button>
     </>
   );
 }

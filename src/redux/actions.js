@@ -1,11 +1,7 @@
-export const INCREMENT = {
-    type: 'INCREMENT',
-}
+import { createAction } from "@reduxjs/toolkit"
 
-export const DECREMENT = {
-    type: 'DECREMENT',
-}
+export const INCREMENT = createAction('INCREMENT');
 
-export const CHANGE_VALUE = {
-    type: 'CHANGE',
-}
+export const DECREMENT = createAction('DECREMENT');
+
+export const CHANGE_VALUE = createAction('CHANGE');
